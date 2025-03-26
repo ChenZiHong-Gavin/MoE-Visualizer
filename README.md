@@ -30,4 +30,5 @@ pip install -r requirements.txt
 python qwen1_5_moe.py
 ```
 
-## Acknowledgement
+
+If this project helps you, please give us a star. 🌟
