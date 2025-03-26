@@ -251,8 +251,8 @@ def _launch_demo(args, model, tokenizer):
                     submit_btn = gr.Button("🚀 Submit (发送)")
 
                 with gr.Group():
-                    batch_file = gr.File(label="上传批处理文件(JSON)")
-                    batch_btn = gr.Button("🔄 执行批处理")
+                    batch_file = gr.File(label="📤 Upload Batch File (JSON) (上传批处理文件)")
+                    batch_btn = gr.Button("🔄 Execute Batch (执行批处理)")
 
             with gr.Column(scale=2):
                 prefill_plot = gr.Plot(label="Expert Activation (Prefill)")
