@@ -16,7 +16,6 @@ from moe_visualizer.plot_histogram import plot_histogram
 
 DEFAULT_CKPT_PATH = "Qwen/Qwen1.5-MoE-A2.7B-Chat"
 
-
 def _get_args():
     parser = ArgumentParser(description="Qwen1.5-MoE Visualizer Demo")
     parser.add_argument(
@@ -251,6 +250,7 @@ def _launch_demo(args, model, tokenizer):
                     submit_btn = gr.Button("🚀 Submit (发送)")
 
                 with gr.Group():
+                    progress_btn = gr.Textbox(label="Progress", visible=False)
                     batch_file = gr.File(label="📤 Upload Batch File (JSON) (上传批处理文件)")
                     batch_btn = gr.Button("🔄 Execute Batch (执行批处理)")
 
@@ -273,9 +273,12 @@ def _launch_demo(args, model, tokenizer):
             submit_btn.click(reset_user_input, [], [query])
 
             batch_btn.click(
+                lambda: gr.update(visible=True),
+                outputs=[progress_btn]
+            ).then(
                 process_batch,
                 [batch_file],
-                [],
+                [progress_btn],
                 show_progress=True
             ).then(
                 generate_plots,
@@ -285,6 +288,9 @@ def _launch_demo(args, model, tokenizer):
                 prepare_data,
                 [],
                 [json_file]
+            ).then(
+                lambda: gr.update(visible=False),
+                outputs=[progress_btn]
             )
 
     demo.queue().launch(
