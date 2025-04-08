@@ -14,7 +14,7 @@ from transformers import AutoModelForCausalLM, AutoTokenizer, TextIteratorStream
 
 from moe_visualizer.plot_histogram import plot_histogram
 
-DEFAULT_CKPT_PATH = "Qwen/Qwen1___5-MoE-A2___7B-Chat"
+DEFAULT_CKPT_PATH = "Qwen/Qwen1.5-MoE-A2.7B-Chat"
 
 
 def _get_args():
